@@ -1,0 +1,64 @@
+{
+  "name": "plum-lang",
+  "displayName": "Plum Language",
+  "publisher": "plum-lang",
+  "description": "Syntax highlighting and language support for the Plum programming language",
+  "version": "0.1.9",
+  "icon": "icons/plum-icon-32.png",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "plum.runFile",
+        "title": "Plum: Run File",
+        "category": "Plum"
+      }
+    ],
+    "languages": [
+      {
+        "id": "plum",
+        "aliases": ["Plum", "plum"],
+        "extensions": [".plum"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "plum",
+        "scopeName": "source.plum",
+        "path": "./syntaxes/plum.tmLanguage.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "plum-icons",
+        "label": "Plum Icons",
+        "path": "./icons/plum-icon-theme.json"
+      },
+      {
+        "id": "plum-icons-material",
+        "label": "Plum Icons (Material)",
+        "path": "./icons/material-icon-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}
