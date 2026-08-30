@@ -1,4 +1,4 @@
-# Plum Language
+# 🍑 Plum Language
 
 Syntax highlighting and language support for the Plum programming language in VS Code.
 
