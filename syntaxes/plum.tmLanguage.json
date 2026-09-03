@@ -12,10 +12,11 @@
     { "include": "#constants" }
   ],
   "repository": {
-    "comments": {
-      "name": "comment.line.double-slash.plum",
-      "match": "//.*$"
-    },
+"comments": {
+  "name": "comment.line.double-dash.plum",
+  "begin": "--",
+  "end": "--"
+},
     "keywords": {
       "patterns": [
         {
@@ -43,21 +44,21 @@
       "name": "constant.numeric.plum",
       "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
     },
-    "operators": {
-      "patterns": [
-        {
-          "name": "keyword.operator.plum",
-          "match": "\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|&&|\\|\\||!"
-        }
-      ]
-    },
+"operators": {
+  "patterns": [
+    {
+      "name": "keyword.operator.plum",
+      "match": "\\*\\*|//|\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|&&|\\|\\||!"
+    }
+  ]
+},
     "functions": {
       "name": "entity.name.function.plum",
       "match": "\\b[a-zA-Z_]\\w*\\s*(?=\\()"
     },
     "constants": {
       "name": "constant.language.plum",
-      "match": "\\b(true|false|null|undefined)\\b"
+      "match": "\\b(good|bad|null|undefined)\\b"
     }
   }
 }
