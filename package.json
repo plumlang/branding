@@ -3,7 +3,7 @@
   "displayName": "Plum Language",
   "publisher": "plum-lang",
   "description": "Syntax highlighting and language support for the Plum programming language",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "icon": "icons/plum-icon-32.png",
   "engines": {
     "vscode": "^1.74.0"
