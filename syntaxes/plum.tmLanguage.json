@@ -9,14 +9,23 @@
     { "include": "#numbers" },
     { "include": "#operators" },
     { "include": "#functions" },
-    { "include": "#constants" }
+    { "include": "#constants" },
+    { "include": "#types" }
   ],
   "repository": {
-"comments": {
-  "name": "comment.line.double-dash.plum",
-  "begin": "--",
-  "end": "--"
-},
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-dash.plum",
+          "match": "--.*$"
+        },
+        {
+          "name": "comment.block.plum",
+          "begin": "--\\[",
+          "end": "\\]--"
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
@@ -25,9 +34,13 @@
         },
         {
           "name": "keyword.declaration.plum",
-          "match": "\\b(let|const|var|func|class)\\b"
+          "match": "\\b(plant|root|func|class)\\b"
         }
       ]
+    },
+    "types": {
+      "name": "storage.type.plum",
+      "match": "\\b(int|float|str|bool|list|dict|any)\\b"
     },
     "strings": {
       "name": "string.quoted.double.plum",
@@ -44,21 +57,25 @@
       "name": "constant.numeric.plum",
       "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
     },
-"operators": {
-  "patterns": [
-    {
-      "name": "keyword.operator.plum",
-      "match": "\\*\\*|//|--|\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|&&|\\|\\||!"
-    }
-  ]
-},
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.plum",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.plum",
+          "match": "\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|&&|\\|\\||!"
+        }
+      ]
+    },
     "functions": {
       "name": "entity.name.function.plum",
       "match": "\\b[a-zA-Z_]\\w*\\s*(?=\\()"
     },
     "constants": {
       "name": "constant.language.plum",
-      "match": "\\b(good|bad|null|undefined)\\b"
+      "match": "\\b(true|false|null|undefined|none)\\b"
     }
   }
 }

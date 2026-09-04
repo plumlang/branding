@@ -1,8 +1,51 @@
-drop 42
-drop "Hello World"
+-- Plum v0.6 - Variables Test --
 
-drop 5 + 10
-drop 10 + 20 + 5
+drop "=== Mutable Variables (plant) ==="
 
---jjn-- 
-//nk//
+-- Declare and initialize
+plant int age = 21
+drop (age)          // 21
+
+-- Reassign - this is allowed
+age = 25
+drop (age)          // 25
+
+-- Reassign using expressions
+age = age + 5
+drop age          // 30
+
+--  Reassign with different values
+age = 100
+drop age          // 100
+
+drop "=== Immutable Variables (root) ==="
+
+-- Immutable variable
+root str name = "Plum"
+drop name         // "Plum"
+
+-- This would cause an error if uncommented:
+-- name = "NewName"  // Error: cannot reassign root variable
+
+drop "=== Type Safety ==="
+
+-- Different types
+plant int count = 10
+plant float price = 19.99
+plant str message = "Hello"
+plant bool isReady = true
+
+drop count
+drop price
+drop message
+drop isReady
+
+drop "=== Expressions ==="
+
+plant int x = 5
+plant int y = 10
+plant int sum = x + y
+drop sum          // 15
+
+plant int result = x * 2 + y
+drop result       // 20
