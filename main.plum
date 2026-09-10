@@ -49,3 +49,4 @@ drop sum          // 15
 
 plant int result = x * 2 + y
 drop result       // 20
+

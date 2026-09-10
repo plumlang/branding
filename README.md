@@ -4,8 +4,8 @@
 
 ## Features
 
-- **Syntax highlighting** for `.plum` files — keywords, strings, numbers, operators, comments, and constants
-- **Language configuration** — auto-closing brackets/quotes, comment toggling (`//`), bracket matching
+- **Syntax highlighting** for `.plum` files — keywords, strings, numbers, operators, comments, constants, types, and functions
+- **Language configuration** — auto-closing brackets/quotes, comment toggling (`--`), bracket matching, auto-indentation for blocks
 - **Custom file icons** for `.plum` files, available as two icon theme options:
   - **Plum Icons** — based on the built-in Seti theme, with a custom Plum icon added
   - **Plum Icons (Material)** — based on Material Icon Theme, with a custom Plum icon added
@@ -20,23 +20,22 @@
 ## Example
 
 ```plum
-// Plum example
-let x = 42
-func greet(name) {
+-- Plum example
+root int MAX = 100
+
+branch int add(int a, int b) {
+    return a + b
+}
+
+branch void greet(str name) {
     drop "Hello, " + name
 }
 
-if x > 10 {
+plant int result = add(5, 3)
+drop result
+
+if result > 10 {
     greet("world")
+} else {
+    greet("plum")
 }
-```
-
-## Roadmap
-
-- Language server (autocomplete, diagnostics)
-- Debugger integration
-- Wire up `Plum: Run File` to an actual Plum interpreter
-
-## Attribution
-
-The "Plum Icons" and "Plum Icons (Material)" icon themes bundle icon sets from VS Code's built-in Seti theme and the [Material Icon Theme](https://github.com/material-extensions/vscode-material-icon-theme) extension (MIT licensed), with a custom Plum file icon added on top.
