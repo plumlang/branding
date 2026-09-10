@@ -4,13 +4,13 @@
   "fileTypes": [".plum"],
   "patterns": [
     { "include": "#comments" },
+    { "include": "#functions" },
     { "include": "#keywords" },
+    { "include": "#types" },
     { "include": "#strings" },
     { "include": "#numbers" },
     { "include": "#operators" },
-    { "include": "#functions" },
-    { "include": "#constants" },
-    { "include": "#types" }
+    { "include": "#constants" }
   ],
   "repository": {
     "comments": {
@@ -26,21 +26,74 @@
         }
       ]
     },
+    "functions": {
+      "patterns": [
+        {
+          "name": "meta.function.plum",
+          "begin": "\\b(branch)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "keyword.declaration.function.plum" },
+            "2": { "name": "storage.type.return.plum" },
+            "3": { "name": "entity.name.function.plum" },
+            "4": { "name": "punctuation.definition.parameters.begin.plum" }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.parameters.end.plum" }
+          },
+          "patterns": [
+            { "include": "#function-parameters" }
+          ]
+        },
+        {
+          "name": "meta.function-call.plum",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.call.plum" },
+            "2": { "name": "punctuation.definition.arguments.begin.plum" }
+          }
+        }
+      ]
+    },
+    "function-parameters": {
+      "patterns": [
+        {
+          "name": "variable.parameter.plum",
+          "match": "\\b(int|str|bool|float|void|list|dict|any)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.parameter.plum" },
+            "2": { "name": "variable.parameter.plum" }
+          }
+        },
+        {
+          "name": "punctuation.separator.parameters.plum",
+          "match": ","
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
           "name": "keyword.control.plum",
-          "match": "\\b(drop|if|else|elif|while|for|return|break|continue)\\b"
+          "match": "\\b(drop|if|elif|else|while|for|return|break|continue)\\b"
         },
         {
           "name": "keyword.declaration.plum",
-          "match": "\\b(plant|root|func|class)\\b"
+          "match": "\\b(plant|root|branch|func|class)\\b"
         }
       ]
     },
     "types": {
-      "name": "storage.type.plum",
-      "match": "\\b(int|float|str|bool|list|dict|any)\\b"
+      "patterns": [
+        {
+          "name": "storage.type.primitive.plum",
+          "match": "\\b(int|float|str|bool|void)\\b"
+        },
+        {
+          "name": "storage.type.complex.plum",
+          "match": "\\b(list|dict|any)\\b"
+        }
+      ]
     },
     "strings": {
       "name": "string.quoted.double.plum",
@@ -68,10 +121,6 @@
           "match": "\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|&&|\\|\\||!"
         }
       ]
-    },
-    "functions": {
-      "name": "entity.name.function.plum",
-      "match": "\\b[a-zA-Z_]\\w*\\s*(?=\\()"
     },
     "constants": {
       "name": "constant.language.plum",
