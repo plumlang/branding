@@ -19,7 +19,7 @@
 
 ## Example
 
-```plum
+```tsx
 -- Plum example
 root int MAX = 100
 
