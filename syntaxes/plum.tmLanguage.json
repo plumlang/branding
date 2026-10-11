@@ -16,13 +16,13 @@
     "comments": {
       "patterns": [
         {
-          "name": "comment.line.double-dash.plum",
-          "match": "--.*$"
+          "name": "comment.line.number-sign.plum",
+          "match": "#.*$"
         },
         {
           "name": "comment.block.plum",
-          "begin": "--\\[",
-          "end": "\\]--"
+          "begin": "#\\[",
+          "end": "\\]#"
         }
       ]
     },
@@ -115,6 +115,10 @@
         {
           "name": "keyword.operator.assignment.plum",
           "match": "="
+        },
+        {
+          "name": "keyword.operator.increment.plum",
+          "match": "\\+\\+|--"
         },
         {
           "name": "keyword.operator.plum",
