@@ -1,0 +1,151 @@
+{
+  "generator": "pipeline/build.py",
+  "note": "Generated. Do not edit; run pipeline/build.py after changing a master.",
+  "sources": {
+    "brand/marks/plum-mark.svg": "a9f72b5b3fc3f3c82617793754afd3fba7442e350d222f61d3ffb81c03bd156d",
+    "brand/marks/plum-pixel.svg": "974a19d47a8d6a148e95abfdc034d638f2c9b6f259bd5d6be02261ddf0017c90",
+    "brand/palette.json": "a23024b40627fe5f09776a7e3c34747f35da262927d61c6fe8b09e9b5d251d76",
+    "prompts/og/plum.elixpo/default.md": "f8711281536d754eb977fdaf4d68782dd63f1d71f940746054a69820bcfaf489",
+    "prompts/og/plum.elixpo/docs.md": "dd9e23275b34ac1999c9be2abc7b0ceda16f23af54e03fdab657c845868d9ce6",
+    "prompts/og/repos/branding.md": "3177fd9f90e21aad8b4733fe12ba9a503dd0eab9934318a0a13c47d68e73aed3",
+    "prompts/og/repos/plumlang.md": "64270ec53b010cb508cf9eaf1bcc314002a19183d174c1bba26e43bfefdc5a9c"
+  },
+  "outputs": [
+    {
+      "path": "icons/plum-mark-16.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "1ccbdfe98cf867e692838c832b05a959143cb26e031f54e3af35537a3620344b"
+    },
+    {
+      "path": "icons/plum-mark-32.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "9295e5e1274e9ea9db86eeb0292faf71b23cad4ea32abc9a1e8a094f5f62c7c1"
+    },
+    {
+      "path": "icons/plum-mark-48.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "8eecc6153711d35c325b4ec777a3ce1357e08a834d53202d9cda2332ca18ae31"
+    },
+    {
+      "path": "icons/plum-mark-64.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "91ff60a7161e058b1df5a342500cdcca7f47eb46a1bb4e4a05cdf4cb95e8a874"
+    },
+    {
+      "path": "icons/plum-mark-128.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "d2b22e8440913d135ad5703483a7ab2d0e358be4f77ea1235021cd5c7cbb746a"
+    },
+    {
+      "path": "icons/plum-mark-180.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "8143521c91ed87ca92a577b796b7fe5ce3d5852babee864a6ec119a63c1a6885"
+    },
+    {
+      "path": "icons/plum-mark-192.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "899a12213b95ae2f1051640693a7bf94de7d77946c066a44858b6c7d935b1f4c"
+    },
+    {
+      "path": "icons/plum-mark-256.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "51f46231c17e55fad7bfcd6dc26350afd4d09245da52532f219341a67711f52d"
+    },
+    {
+      "path": "icons/plum-mark-512.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "cbf1d2edf65e141ef9bd0dcc3bce94f606580485a892fd4ba2e46c14765ebe97"
+    },
+    {
+      "path": "icons/favicon.ico",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "1ef52b983f1c9b997623637a4cbb7a69ae957ba0482cc4296d6e1713fcbe390e"
+    },
+    {
+      "path": "icons/apple-touch-icon.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "3556bb8308942be5b09227b1b1abd9b3517bb6f003edb6c9161cc8c0c6efcd60"
+    },
+    {
+      "path": "icons/plum-pixel-40.png",
+      "source": "brand/marks/plum-pixel.svg",
+      "sha256": "32628539086924bfba1091e552ad65c980d0a34fa17be34659a733cb98ee4465"
+    },
+    {
+      "path": "icons/plum-pixel-80.png",
+      "source": "brand/marks/plum-pixel.svg",
+      "sha256": "cd86de8e7958f74bc7d439ca1e14dd9fe970e6b37d4fcdc5af0eec2656e790aa"
+    },
+    {
+      "path": "icons/plum-pixel-160.png",
+      "source": "brand/marks/plum-pixel.svg",
+      "sha256": "5710944c167797b265a4f31ecea6433096f1ad5a6d18bc78afe7de27f9869fce"
+    },
+    {
+      "path": "icons/plum-pixel-480.png",
+      "source": "brand/marks/plum-pixel.svg",
+      "sha256": "34a5270cfa4fac82987733230018a064edab2679b10accd9a760ee512b0e671c"
+    },
+    {
+      "path": "social/avatar-512.png",
+      "source": "brand/marks/plum-mark.svg",
+      "sha256": "102b057860b32c7e66067d87f053fecce192b7da6187fbd9f9c21ca86c2ffb1d"
+    },
+    {
+      "path": "social/lockup-light.png",
+      "source": "brand/marks/plum-mark.svg",
+      "fonts": [
+        "Inter-SemiBold.otf"
+      ],
+      "sha256": "1b2787c0378bab353d48b42b260ed7f6230b41167bc45f894da80454d49b97bd"
+    },
+    {
+      "path": "social/lockup-dark.png",
+      "source": "brand/marks/plum-mark.svg",
+      "fonts": [
+        "Inter-SemiBold.otf"
+      ],
+      "sha256": "ef99cb64f1c5e140bc45b3428044d779e3f962813723106d1ca293c21d56bda5"
+    },
+    {
+      "path": "og/plum.elixpo/default.png",
+      "source": "prompts/og/plum.elixpo/default.md",
+      "fonts": [
+        "EBGaramond08-Regular.ttf",
+        "Inter-Regular.otf",
+        "UbuntuSansMono[wght].ttf"
+      ],
+      "sha256": "ef48e1929d45872bf5cba3cc35d68f20224d9bf16a9e4de34b5ce5d090bf32a5"
+    },
+    {
+      "path": "og/plum.elixpo/docs.png",
+      "source": "prompts/og/plum.elixpo/docs.md",
+      "fonts": [
+        "EBGaramond08-Regular.ttf",
+        "Inter-Regular.otf",
+        "UbuntuSansMono[wght].ttf"
+      ],
+      "sha256": "8f6a9adabffb9d5b9a613b37591cab49b6078554638eaa690ee5a1c2d2d9482c"
+    },
+    {
+      "path": "og/repos/branding.png",
+      "source": "prompts/og/repos/branding.md",
+      "fonts": [
+        "EBGaramond08-Regular.ttf",
+        "Inter-Regular.otf",
+        "UbuntuSansMono[wght].ttf"
+      ],
+      "sha256": "4c777d1f03cb50bc4d58b21e10633dbd480427cd5e6bbfd5159fc629e85d7a61"
+    },
+    {
+      "path": "og/repos/plumlang.png",
+      "source": "prompts/og/repos/plumlang.md",
+      "fonts": [
+        "EBGaramond08-Regular.ttf",
+        "Inter-Regular.otf",
+        "UbuntuSansMono[wght].ttf"
+      ],
+      "sha256": "b112684fe938183b9f1a15faf83e74a0d6f82593fa356d55763b517e98095133"
+    }
+  ]
+}

@@ -3,12 +3,14 @@ project:
   id: branding
   name: branding
   title: Plumlang branding
-  description: Plumlang's brand assets (logos, icons) and its VS Code
-    extension.
+  description: Plumlang's brand system, marks, icons, social cards and the
+    pipeline that renders them, plus the VS Code extension.
   family: project
   artifact_type: software
   profile: editor-extension
   technologies:
+  - Python
+  - SVG
   - VS Code
   - TypeScript
   - TextMate grammars
@@ -16,8 +18,9 @@ project:
   lifecycle: active
   relationship: satellite
   custody: elixpo-owned
-  # the Node path of the quality gate: npm ci, then the commands below
-  stack: nextjs
+  # the Python path of the quality gate: pip install -r requirements.txt, then
+  # the commands below; the extension builds from vscode/
+  stack: python
   node_version: '22'
   repository: https://github.com/plumlang/branding
   deployment: https://marketplace.visualstudio.com/items?itemName=plum-lang.plum-lang
@@ -31,8 +34,8 @@ publication:
   canonical_url: https://github.com/plumlang/branding
 ci:
   lint_cmd: ''
-  test_cmd: ''
-  build_cmd: npm run compile
+  test_cmd: python pipeline/build.py --check
+  build_cmd: cd vscode && npm ci && npm run compile
 maintainers:
 - github: Circuit-Overtime
   skills:
