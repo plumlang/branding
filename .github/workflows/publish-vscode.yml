@@ -1,5 +1,5 @@
 # Publishes the VS Code extension through the shared Elixpo workflow. It
-# publishes only when package.json's version is newer than the Marketplace's,
+# publishes only when vscode/package.json's version is newer than the Marketplace's,
 # so a merge that doesn't bump the version does nothing.
 # Needs a GitHub environment named "vscode" holding the VSCE_PAT secret.
 name: Publish VS Code extension
@@ -8,7 +8,7 @@ on:
   push:
     branches: [main]
     paths:
-      - package.json
+      - vscode/package.json
       - .github/workflows/publish-vscode.yml
   workflow_dispatch: {}
 
@@ -19,7 +19,7 @@ jobs:
   vscode:
     uses: elixpo/agent.elixpo/.github/workflows/publish-vscode.yml@main
     with:
-      working-directory: .
+      working-directory: vscode
       build-command: npm run compile
     secrets:
       VSCE_PAT: ${{ secrets.VSCE_PAT }}
