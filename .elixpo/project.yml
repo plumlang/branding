@@ -1,7 +1,7 @@
 schema_version: '1.0'
 project:
-  id: plum-branding
-  name: plum-branding
+  id: branding
+  name: branding
   title: Plumlang branding
   description: Plumlang's brand assets (logos, icons) and its VS Code
     extension.
@@ -19,7 +19,7 @@ project:
   # the Node path of the quality gate: npm ci, then the commands below
   stack: nextjs
   node_version: '22'
-  repository: https://github.com/plumlang/plum-branding
+  repository: https://github.com/plumlang/branding
   deployment: https://marketplace.visualstudio.com/items?itemName=plum-lang.plum-lang
   discussions: https://github.com/plumlang/plumlang/discussions
   status_owner: elixpo
@@ -27,8 +27,8 @@ project:
 publication:
   public: true
   featured: false
-  canonical_slug: plum-branding
-  canonical_url: https://github.com/plumlang/plum-branding
+  canonical_slug: plumlang-branding
+  canonical_url: https://github.com/plumlang/branding
 ci:
   lint_cmd: ''
   test_cmd: ''
