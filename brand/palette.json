@@ -1,0 +1,24 @@
+{
+  "name": "Plumlang",
+  "system": "Elixpo Open Field",
+  "version": "0.1.0-draft",
+  "status": "draft, awaiting maintainer review",
+  "colours": {
+    "paper":        { "hex": "#F6F5F0", "source": "Open Field", "role": "Page field and card background" },
+    "ink":          { "hex": "#142018", "source": "Open Field", "role": "Text, dark panels, high-emphasis controls" },
+    "archive-warm": { "hex": "#F0E6D3", "source": "Open Field", "role": "Quiet secondary fields, provenance, history" },
+    "field-green":  { "hex": "#18A466", "source": "Open Field", "role": "The leaf; small highlights. Not body text on light fields" },
+    "foundry-green":{ "hex": "#0B623C", "source": "Open Field", "role": "Elixpo identity: the 'An Elixpo production' line" },
+    "plum":         { "hex": "#5B2A86", "source": "Plumlang", "role": "Primary project colour: the fruit, links, active states" },
+    "plum-deep":    { "hex": "#3A2150", "source": "Plumlang (pixel icon)", "role": "The seam, dark accents, code panels" },
+    "plum-night":   { "hex": "#24143A", "source": "Plumlang (pixel icon)", "role": "Dark-theme field" },
+    "plum-light":   { "hex": "#8E5CC2", "source": "Plumlang", "role": "Highlight on the fruit; accents on dark fields" },
+    "plum-mist":    { "hex": "#C9A8EE", "source": "Plumlang", "role": "Links and text accents on dark fields" },
+    "stem":         { "hex": "#B5701E", "source": "Plumlang (pixel icon)", "role": "The stem only" }
+  },
+  "type": {
+    "sans":  ["Inter", "Ubuntu Sans", "DejaVu Sans"],
+    "serif": ["EB Garamond", "Source Serif 4", "DejaVu Serif"],
+    "mono":  ["JetBrains Mono", "Ubuntu Sans Mono", "DejaVu Sans Mono"]
+  }
+}
