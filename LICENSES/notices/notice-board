@@ -1,0 +1,25 @@
+THIRD-PARTY NOTICES
+===================
+
+This repository uses third-party components, each under its own licence.
+Everything else is licensed under the Elixpo standard; see ../../LICENSE.
+
+Shipped in the VS Code extension (vscode/):
+
+  * Material Icon Theme icons (vscode/icons/material-icons/)
+                               - MIT, Copyright (c) 2025 Material Extensions;
+                                 vscode/icons/material-icons-LICENSE.txt
+  * Seti UI icon font (vscode/icons/seti.woff)
+                               - MIT, Copyright (c) 2014 Jesse Weed
+
+Render pipeline (pipeline/, see requirements.txt; not shipped):
+
+  * Pillow                     - MIT-CMU (HPND)
+  * CairoSVG                   - LGPL-3.0-or-later
+  * Python standard library    - PSF License
+
+Fonts are used from the system at render time and are not included; the
+font behind each rendered asset is recorded in brand/provenance.json.
+
+If you believe a component is missing from this list, please open an issue
+or email hello@elixpo.com.

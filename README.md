@@ -139,13 +139,19 @@ the master and its derivatives. Questions go to
 [Discussions](https://github.com/plumlang/plumlang/discussions) or
 **hello@elixpo.com**.
 
-## Trademarks
+## Licence
 
-Plumlang and the Plumlang logo are trademarks of Elixpo. Use of the marks
-follows [TRADEMARKS.md](https://github.com/plumlang/plumlang/blob/main/TRADEMARKS.md)
-in the language repository. The Material icons in the extension are used
-under the licence in
-[`vscode/icons/material-icons-LICENSE.txt`](vscode/icons/material-icons-LICENSE.txt).
+This repository follows the Elixpo licensing standard ([LICENSE](LICENSE)):
+
+- **Code** (the pipeline, the VS Code extension): [MIT](LICENSES/preferred/MIT).
+- **Assets** (`brand/`, `icons/`, `social/`, `og/`, `prompts/`, `references/`): [CC-BY-4.0](LICENSES/preferred/CC-BY-4.0).
+
+Both carry the [Plumlang-trademarks](LICENSES/exceptions/Plumlang-trademarks)
+exception: the files are open, but the Plumlang name and marks remain
+trademarks of Elixpo. You may say that a project is written in or supports
+Plumlang and show the unmodified mark beside it. Reservations for the
+Marketplace listing are on the [notice board](NOTICE), and third-party
+components are listed in [LICENSES/notices/notice-board](LICENSES/notices/notice-board).
 
 ---
 

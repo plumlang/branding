@@ -1,0 +1,37 @@
+NOTICE - the notice board
+=========================
+
+This repository is licensed under the Elixpo License (see ./LICENSE). This
+NOTICE file records reservations and product-specific terms that sit ON TOP
+of that licence. Read it together with LICENSE and
+LICENSES/exceptions/Plumlang-trademarks.
+
+REPOSITORY
+----------
+
+  Name:        plumlang/branding
+  What it is:  The home of the Plumlang brand: the brand system, the masters,
+               the render pipeline, the rendered assets, and the Plumlang
+               extension for Visual Studio Code.
+
+EXCLUSIVE TO THIS REPOSITORY
+----------------------------
+
+  * The Plumlang name and marks, as brand identity. The files are offered
+    under CC-BY-4.0, but the identity they depict remains reserved.
+  * The Visual Studio Marketplace listing "plum-lang.plum-lang" and the
+    `plum-lang` publisher. Builds of the extension from this source are
+    yours to use, but may not be published under that listing, that
+    publisher, or the Plumlang name.
+
+ASSETS & DISTRIBUTION
+---------------------
+
+  * The masters in brand/ are rendered by pipeline/build.py into icons/,
+    social/ and og/, and DISTRIBUTED to the other Plumlang repositories
+    (plumlang/plumlang, plumlang/plum.elixpo). The masters and the pipeline
+    stay in this repository.
+
+  All rendered assets are licensed CC-BY-4.0 WITH Plumlang-trademarks.
+
+Contact: hello@elixpo.com
