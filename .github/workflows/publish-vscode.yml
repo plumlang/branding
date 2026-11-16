@@ -1,7 +1,14 @@
-# Publishes the VS Code extension through the shared Elixpo workflow. It
-# publishes only when vscode/package.json's version is newer than the Marketplace's,
-# so a merge that doesn't bump the version does nothing.
-# Needs a GitHub environment named "vscode" holding the VSCE_PAT secret.
+# Publishes the VS Code extension: to the Visual Studio Marketplace through
+# the shared Elixpo workflow, and to Open VSX (VSCodium, Gitpod, Cursor, ...)
+# from the job below. Each publishes only when vscode/package.json's version
+# is newer than the one already there, so a merge that doesn't bump the
+# version does nothing.
+#
+# Both need a GitHub environment named "vscode" holding the secrets:
+#   VSCE_PAT  a Marketplace personal access token (the shared workflow needs it)
+#   OVSX_PAT  an Open VSX access token; without it the Open VSX job is skipped,
+#             with a notice. The namespace "plum-lang" must exist on Open VSX
+#             first: npx ovsx create-namespace plum-lang --pat <token>.
 name: Publish VS Code extension
 
 on:
@@ -23,3 +30,71 @@ jobs:
       build-command: npm run compile
     secrets:
       VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+  # The shared workflow publishes to the Marketplace only, so Open VSX has
+  # a job of its own.
+  open-vsx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: vscode
+    concurrency:
+      group: open-vsx-${{ github.repository }}
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: vscode
+    env:
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
+      OVSX: ovsx@1.3.0
+    steps:
+      - name: Skip without OVSX_PAT
+        if: env.OVSX_PAT == ''
+        working-directory: .
+        run: |
+          echo "::notice title=Open VSX skipped::The OVSX_PAT secret isn't set in the vscode environment, so the extension wasn't published to Open VSX."
+          echo "Open VSX: skipped, the OVSX_PAT secret isn't set." >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        if: env.OVSX_PAT != ''
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        if: env.OVSX_PAT != ''
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: vscode/package-lock.json
+
+      - name: Check whether this version is already published
+        id: version
+        if: env.OVSX_PAT != ''
+        run: |
+          publisher=$(node -p 'require("./package.json").publisher')
+          name=$(node -p 'require("./package.json").name')
+          version=$(node -p 'require("./package.json").version')
+          latest=$(curl -fsS "https://open-vsx.org/api/$publisher/$name" 2>/dev/null |
+            node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).version||"")}catch{console.log("")}})')
+          echo "label=$publisher.$name@$version" >> "$GITHUB_OUTPUT"
+          if [ "$latest" = "$version" ]; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "$publisher.$name@$version is already on Open VSX; nothing to publish." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: env.OVSX_PAT != '' && steps.version.outputs.publish == 'true'
+        run: npm ci
+
+      - name: Build
+        if: env.OVSX_PAT != '' && steps.version.outputs.publish == 'true'
+        run: npm run compile
+
+      - name: Publish
+        if: env.OVSX_PAT != '' && steps.version.outputs.publish == 'true'
+        env:
+          LABEL: ${{ steps.version.outputs.label }}
+        run: |
+          npx --yes "$OVSX" publish --pat "$OVSX_PAT"
+          echo "Published \`$LABEL\` to Open VSX." >> "$GITHUB_STEP_SUMMARY"
