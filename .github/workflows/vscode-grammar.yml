@@ -36,6 +36,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/checkout@v4
+        with:
+          repository: plumlang/plumlang
+          ref: lang/issue-161
+          path: .plumlang
+          persist-credentials: false
       - uses: plumlang/setup-plum@v1
       - run: npm ci --ignore-scripts
-      - run: npm test
+      - run: npm test -- ../.plumlang/tests/highlight
