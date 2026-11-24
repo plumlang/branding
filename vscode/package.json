@@ -4,6 +4,7 @@
   "publisher": "plum-lang",
   "description": "Plumlang for VS Code: highlighting, plus diagnostics, hover, go to definition, completion, outline and formatting from the plum language server",
   "version": "1.0.0",
+  "license": "MIT",
   "homepage": "https://plum.elixpo.com/docs/tools/lsp/",
   "repository": {
     "type": "git",

@@ -1,0 +1,9 @@
+Plumlang for Visual Studio Code
+
+The extension's code is licensed under the MIT License (LICENSE). The Plumlang
+icons under icons/ are licensed under CC-BY-4.0; the third-party icons under
+icons/material-icons/ keep their own licence (icons/material-icons-LICENSE.txt). Neither licence grants rights to
+the Plumlang or Elixpo names or logos: "Plumlang", "Plum", "Elixpo" and the
+Plumlang and Elixpo logos are trademarks of Elixpo. See
+https://github.com/plumlang/branding/blob/main/LICENSE and
+https://github.com/plumlang/plumlang/blob/main/TRADEMARKS.md.
