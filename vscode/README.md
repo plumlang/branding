@@ -30,7 +30,7 @@ From the language server (`plum lsp`):
 
 In the extension itself:
 
-- Syntax highlighting for `.plum` files.
+- Syntax highlighting for `.plum` files, block comments `#[ ... ]#` and `##` doc comments included.
 - Bracket matching, auto-closing pairs, comment toggling and indentation.
 - **Plum: Run File** (also the ▶ button in the editor title): saves the file
   and runs `plum run <file>` in a terminal.
