@@ -7,8 +7,12 @@
 //      keywords as above, numbers constant.numeric.*, strings string.*,
 //      interpolation formats constant.other.format-spec, and names and
 //      operators neither string (outside an interpolation) nor comment;
-//   3. every `#` comment in the sample is a comment, and every `#` inside a
-//      string is not.
+//   3. every comment in the sample is a comment (`#`, `##`, and every
+//      character of nested `#[ ... ]#` block comments), and every `#` inside
+//      a string is not.
+//
+// Tokens inside block comments are left out of 2, so a `plum` older than
+// block comments (it reads them as code) still checks the rest.
 //
 // Usage: node test/grammar.test.js [dir]
 //   dir holds keywords.txt and sample.plum (e.g. ../../plumlang/tests/highlight);
@@ -77,11 +81,12 @@ const inString = (stack) => {
   return last >= 0 && !stack.slice(last).some((s) => s.startsWith("meta.interpolation"));
 };
 
-// Where comments start in Plumlang source (a `#` outside a string), and the
-// `#`s inside strings: following strings, escapes, """ strings and
-// {interpolation} with nested brackets. Positions are [line, column], 0-based.
+// Where comments start in Plumlang source (a `#` outside a string), every
+// character of block comments (as "line:column" keys), and the `#`s inside
+// strings: following strings, escapes, """ strings, {interpolation} with
+// nested brackets and nested #[ ]#. Positions are [line, column], 0-based.
 function hashes(text) {
-  const comments = [], inStrings = [];
+  const comments = [], inStrings = [], inBlocks = new Set();
   const mode = []; // "s" in a "string, "t" in a """string, "{" in code inside an interpolation
   let line = 0, col = 0;
   for (let i = 0; i < text.length; i++, col++) {
@@ -95,13 +100,27 @@ function hashes(text) {
       else if (top === "s" && c === '"') mode.pop();
       continue;
     }
+    if (text.startsWith("#[", i)) {
+      comments.push([line, col]);
+      let depth = 0;
+      for (; i < text.length; i++, col++) {
+        if (text[i] === "\n") { line++; col = -1; continue; }
+        inBlocks.add(`${line}:${col}`);
+        if (text.startsWith("#[", i)) { depth++; inBlocks.add(`${line}:${col + 1}`); i++; col++; }
+        else if (text.startsWith("]#", i)) {
+          depth--; inBlocks.add(`${line}:${col + 1}`); i++; col++;
+          if (depth === 0) break;
+        }
+      }
+      continue;
+    }
     if (c === "#") { comments.push([line, col]); while (i + 1 < text.length && text[i + 1] !== "\n") { i++; col++; } continue; }
     if (text.startsWith('"""', i)) { mode.push("t"); i += 2; col += 2; }
     else if (c === '"') mode.push("s");
     else if (c === "{" || c === "(" || c === "[") mode.push(c);
     else if (c === "}" || c === ")" || c === "]") mode.pop();
   }
-  return { comments, inStrings };
+  return { comments, inStrings, inBlocks };
 }
 
 (async () => {
@@ -130,12 +149,14 @@ function hashes(text) {
   fs.writeFileSync(path.join(tmp, "sample.plum"), sample);
   const tokens = execFileSync(plum, ["tokens", path.join(tmp, "sample.plum")], { encoding: "utf8" });
   fs.rmSync(tmp, { recursive: true });
+  const { comments, inStrings, inBlocks } = hashes(sample);
   let checked = 0;
   for (const t of tokens.split(/\r?\n/)) {
     const m = /^(\d+):(\d+) (\w+)(?: (.*))?$/.exec(t);
     if (!m || m[3] === "NEWLINE" || m[3] === "EOF") continue;
     const [, l, c, kind] = m;
     const line = +l - 1, col = charIndex(lines[line], +c - 1);
+    if (inBlocks.has(`${line}:${col}`)) continue;
     const stack = scopes[line][col] || [];
     const leaf = stack[stack.length - 1] || "";
     const text = lines[line].slice(col);
@@ -156,15 +177,24 @@ function hashes(text) {
   }
 
   // 3. Comments, and `#` in strings.
-  const { comments, inStrings } = hashes(sample);
   const commentAt = ([l, c]) => (scopes[l][c] || []).some((s) => s.startsWith("comment."));
+  for (const key of inBlocks) {
+    const [l, c] = key.split(":").map(Number);
+    if (!(scopes[l][c] || []).includes("comment.block.plum"))
+      problems.push(`sample.plum:${l + 1}:${c + 1}: should be in a block comment`);
+  }
+  for (const [l, c] of comments) {
+    if (lines[l].startsWith("##", c) && !lines[l].startsWith("###", c) &&
+        !(scopes[l][c] || []).includes("comment.line.documentation.plum"))
+      problems.push(`sample.plum:${l + 1}:${c + 1}: '##' should start a doc comment`);
+  }
   for (const at of comments)
     if (!commentAt(at)) problems.push(`sample.plum:${at[0] + 1}:${at[1] + 1}: '#' should start a comment`);
   for (const at of inStrings)
     if (commentAt(at)) problems.push(`sample.plum:${at[0] + 1}:${at[1] + 1}: '#' in a string is highlighted as a comment`);
 
   for (const p of problems) console.log(p);
-  console.log(`${keywords.length} keywords, ${checked} tokens and ${comments.length} comments and ${inStrings.length} '#' in strings checked: ${problems.length} problems`);
+  console.log(`${keywords.length} keywords, ${checked} tokens and ${comments.length} comments (${inBlocks.size} characters of block comments) and ${inStrings.length} '#' in strings checked: ${problems.length} problems`);
   process.exitCode = problems.length ? 1 : 0;
 })().catch((e) => {
   console.error(e);

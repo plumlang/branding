@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Block comments `#[ ... ]#`, nested and over several lines, and `##` doc comments
+  ([plumlang/plumlang#161](https://github.com/plumlang/plumlang/issues/161)), with their own scopes
+  (`comment.block.plum`, `comment.line.documentation.plum`). **Toggle Block Comment** writes `#[ ... ]#`.
+
 ## 1.0.1
 
 - Highlighting follows the current language
