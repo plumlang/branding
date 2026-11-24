@@ -3,7 +3,7 @@
   "displayName": "Plum Language",
   "publisher": "plum-lang",
   "description": "Plumlang for VS Code: highlighting, plus diagnostics, hover, go to definition, completion, outline and formatting from the plum language server",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "homepage": "https://plum.elixpo.com/docs/tools/lsp/",
   "repository": {
     "type": "git",
