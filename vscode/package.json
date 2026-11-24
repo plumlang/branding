@@ -3,7 +3,7 @@
   "displayName": "Plum Language",
   "publisher": "plum-lang",
   "description": "Plumlang for VS Code: highlighting, plus diagnostics, hover, go to definition, completion, outline and formatting from the plum language server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "homepage": "https://plum.elixpo.com/docs/tools/lsp/",
   "repository": {
@@ -122,15 +122,18 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "package": "vsce package",
+    "test": "node test/grammar.test.js"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
   },
   "devDependencies": {
-    "@types/vscode": "^1.82.0",
     "@types/node": "^18.0.0",
+    "@types/vscode": "^1.82.0",
+    "@vscode/vsce": "^2.22.0",
     "typescript": "^5.0.0",
-    "@vscode/vsce": "^2.22.0"
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.0"
   }
 }

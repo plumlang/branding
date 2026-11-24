@@ -1,0 +1,41 @@
+# Tests the VS Code extension's TextMate grammar against Plumlang's shared
+# highlighting sample (plumlang's tests/highlight/, fetched from main): every
+# keyword is highlighted as one, and every token of sample.plum, as
+# `plum tokens` reads it, gets the right scope. Weekly too, so a keyword
+# added to Plumlang's lexer fails here until the grammar knows it.
+name: VS Code grammar
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - vscode/**
+      - .github/workflows/vscode-grammar.yml
+  pull_request:
+    paths:
+      - vscode/**
+      - .github/workflows/vscode-grammar.yml
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  grammar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: vscode
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: plumlang/setup-plum@v1
+      - run: npm ci --ignore-scripts
+      - run: npm test

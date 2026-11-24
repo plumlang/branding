@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.1
+
+- Highlighting follows the current language
+  ([plumlang/branding#8](https://github.com/plumlang/branding/issues/8)): every keyword (`seed`, `trait`, `kind`,
+  `match`, `try`/`catch`/`finally`/`throw`, `spawn`, `weak`, `self`, `super`, `is`, `as`, ...), `good`/`bad` and
+  `true`/`false`, and numbers in hex, octal and binary, with `_` separators and exponents. String escapes,
+  `{...}` interpolation highlighted as code, formats such as `{price:.2}`, and `"""` strings. Names of trees,
+  traits, kinds, functions, constants and built-in types.
+- Removed what Plumlang doesn't have: `elif`, `void`, `#[ ... ]#` block comments, `++`, `&&`, `||`.
+- Indentation follows brackets; `"` doesn't auto-close inside strings and comments.
+- The grammar is tested against Plumlang's shared highlighting sample in CI.
+
 ## 1.0.0
 
 - The first stable release of the Plumlang extension.
